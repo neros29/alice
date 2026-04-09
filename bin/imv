@@ -1,0 +1,6 @@
+#!/bin/bash
+if [[ "$1" == "-t" ]]; then
+    find ~/wallpaper/imv -type f -print0 | sort -z | shuf -z -n $(find ~/wallpaper/imv -type f | wc -l) | xargs -0 imv -f -t "$2"
+else
+    find ~/wallpaper/imv -type f -print0 | sort -z | shuf -z -n $(find ~/wallpaper/imv -type f | wc -l) | xargs -0 imv -f
+fi

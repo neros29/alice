@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sudo cp ~/.alice/config/keyd/default.conf /etc/keyd/default.conf
+echo "Installed keyd config"
+sudo systemctl restart keyd.service
+echo "Restared keyd"

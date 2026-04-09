@@ -1,0 +1,7 @@
+#!/bin/bash
+sleep 1 # wait for everything to load before running
+hyprw -w 3 -- firefox music.youtube.com monkeytype.com https://voice.google.com/u/0/messages &
+hyprw -w 4 -- nautilus &
+hyprw -w 2 -- kitty &
+sleep 2
+hyprctl dispatch workspace 2

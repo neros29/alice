@@ -1,0 +1,70 @@
+#!/bin/bash
+
+data_path="/home/neros/.alice/data/music"
+
+# Check if an argument is provided.
+if [ -z "$1" ]; then
+    default_line="1" # Store the default value
+else
+    default_line="$1" # Store the value if it exists
+fi
+
+# Check if the user is requesting the --options feature.
+if [ "$1" == "--options" ]; then
+    if [ -f "$data_path" ]; then
+        cat -n "$data_path" # This is good to display options
+        exit 0              # Exit after printing the options. Crucial
+    fi
+    echo "Error: Music list file not found: '$data_path'" >&2
+    exit 1
+fi
+
+if [ "$1" == "--add" ]; then
+    if [ -z "$2" ]; then
+        folder="$(pwd)"
+    else
+        folder="$2"
+    fi
+    if [ -d "$folder" ]; then
+        echo "$folder" >>"$data_path" # Corrected: No need for single quotes.
+        exit 0                        # Exit after adding.
+    fi
+    echo "Error: Folder not found: '$folder'" >&2
+    exit 1
+fi
+
+# Check if the file exists before trying to read from it.  Important!
+if [ -f "$data_path" ]; then
+    # Get the line number specified by the argument.  Use "sed -n" correctly
+    # and handle potential errors if the line number is out of bounds.
+    line_number="$default_line"
+
+    # Validate the line number to prevent errors.
+    if ! [[ "$line_number" =~ ^[0-9]+$ ]]; then
+        echo "Error: Argument must be a positive integer." >&2
+        exit 1
+    fi
+
+    # Get the number of lines in the file
+    num_lines=$(wc -l <"$data_path")
+
+    # Check if the line number is valid
+    if ((line_number > num_lines || line_number < 1)); then
+        echo "Error: Line number '$line_number' is out of range (1-$num_lines)." >&2
+        exit 1
+    fi
+
+    # Extract the line using sed
+    line_content=$(sed -n "${line_number}p" "$data_path")
+
+    if [ -z "$line_content" ]; then
+        echo "Error: Could not extract line content from '$data_path'." >&2
+        exit 1
+    fi
+
+    # Play the music
+    mpv --shuffle "$line_content"
+else
+    echo "Error: Music list file not found: $data_path" >&2
+    exit 1
+fi

@@ -1,0 +1,73 @@
+
+# ─────────────────────────────
+#  Starship: Cyber-Terminal Theme
+# ─────────────────────────────
+
+add_newline = true
+command_timeout = 200
+
+# Fancy prompt layout
+# Directory → Git → Python Env → Prompt Arrow
+format = """
+[╭─](bold bright-black)[$directory]($style)\
+[$git_branch$git_status]($style)\
+[$python]($style)
+[╰─](bold bright-black)$character
+"""
+
+# Character (Prompt symbol)
+[character]
+success_symbol = "[❯](bold cyan)"
+error_symbol = "[✗](bold red)"
+vicmd_symbol = "[🮴](bold green)"
+
+# Directory block
+[directory]
+style = "bold bright-cyan"
+read_only = " "
+read_only_style = "red"
+truncation_length = 3
+truncation_symbol = "…/"
+repo_root_style = "bold cyan"
+repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+
+# Git info
+[git_branch]
+symbol = " "
+format = "[$symbol$branch]($style) "
+style = "bold italic magenta"
+
+[git_status]
+format = '[($all_status)]($style) '
+style = "bright-magenta"
+ahead = "⇡${count} "
+behind = "⇣${count} "
+diverged = "⇕⇡${ahead_count}⇣${behind_count} "
+untracked = "[?](bold yellow)"
+modified = "[~](bold cyan)"
+conflicted = "[](bold red)"
+up_to_date = " "
+staged = "[+](bold green)"
+deleted = "[-](bold red)"
+
+# Python environment (virtualenv)
+[python]
+symbol = "  "
+style = "bold yellow"
+format = "[${symbol}(${virtualenv})]($style) "
+
+# Optional: Add time or battery on the right side
+[time]
+disabled = false
+format = "[🕒 $time]($style)"
+time_format = "%H:%M"
+style = "dim white"
+
+[battery]
+disabled = false
+full_symbol = "🔋"
+charging_symbol = "⚡"
+discharging_symbol = "🔌"
+format = "[ $symbol $percentage ]($style)"
+style = "bold green"
+

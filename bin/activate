@@ -1,0 +1,20 @@
+#!/bin/bash
+set -euo pipefail
+
+dir="$PWD"
+
+# Make globs include dot dirs like .venv
+shopt -s dotglob nullglob
+
+while [[ "$dir" != "/" ]]; do
+  for cand in "$dir"/*; do
+    if [[ -f "$cand/pyvenv.cfg" && -f "$cand/bin/activate" ]]; then
+      printf '%s\n' "$cand/bin/activate"
+      exit 0
+    fi
+  done
+  dir="$(dirname "$dir")"
+done
+
+exit 1
+

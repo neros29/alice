@@ -1,0 +1,14 @@
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+[pull]
+	rebase = true
+[init]
+	defaultBranch = master
+[user]
+	name = neros29
+	email = sorenmile29@gmail.com
+[url "git@github.com:"]
+	insteadOf = https://github.com/

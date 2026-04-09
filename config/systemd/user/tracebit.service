@@ -1,0 +1,7 @@
+[Unit]
+Description=Tracebit credentials refresh
+
+[Service]
+Type=oneshot
+ExecStart=/home/neros/.local/bin/tracebit refresh
+TimeoutSec=60
