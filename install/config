@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+cp -r ~/.alice/config/* ~/.config/
+mv ~/.config/bashrc ~/.bashrc
+source ~/.bashrc

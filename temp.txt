@@ -1,3 +1,0 @@
-sudo pacman -Syu spice-vdagent qemu-guest-agent
-sudo systemctl enable --now spice-vdagent.service
-sudo systemctl enable --now qemu-guest-agent.service
