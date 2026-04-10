@@ -1,7 +1,7 @@
 {
     "map": {
         "2": "kitty",
-        "3": "firefox music.youtube.com  monkeytype.com https://voice.google.com/u/0/messages",
+        "3": "firefox",
         "4": "nautilus --new-window",
         "8": "mpv --shuffle \"$(cat ~/.alice/data/music | walker --dmenu -p 'Music' --width 800 --height 800)\"",
         "9": "google-chrome-stable --app=https://chatgpt.com",
