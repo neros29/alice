@@ -3,7 +3,7 @@
 compress() { tar -czf "${1%/}.tar.gz" "${1%/}"; }
 alias decompress="tar -xzf"
 
-alias activate='source "$($ALICE_PATH/.config/bash/activate)"'
+alias activate='source "$(~/.config/bash/activate)"'
 
 # Transcode any image to JPG image that's great for shrinking wallpapers
 img2jpg() {
