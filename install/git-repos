@@ -1,18 +1,20 @@
 #!/usr/bin/bash
 
-# Define paths
-TEMP_DIR="kickstart.nvim"
-TARGET_DIR="$HOME/.config/nvim"
+# install nvim
 
 echo "Cloning kickstart.nvim..."
 git clone "https://github.com/neros29/kickstart.nvim.git"
 
-if [ -d "$TARGET_DIR" ] && [ "$(ls -A "$TARGET_DIR")" ]; then
-    echo "Error: '$TARGET_DIR' is not empty. Move aborted to prevent overwriting files."
+if [ -d "$HOME/.config/nvim" ] && [ "$(ls -A "$HOME/.config/nvim")" ]; then
+    echo "Error: '$HOME/.config/nvim' is not empty. Move aborted to prevent overwriting files."
 else
-    echo "Target '$TARGET_DIR' is empty or doesn't exist. Moving files..."
-    mkdir -p "$TARGET_DIR"
-    cp -r "$TEMP_DIR"/* "$TARGET_DIR/"
-    rm -rf "$TEMP_DIR"
-    echo "Successfully installed kickstart.nvim to $TARGET_DIR"
+    echo "Target '$HOME/.config/nvim' is empty or doesn't exist. Moving files..."
+    mkdir -p "$HOME/.config/nvim"
+    cp -r kickstart.nvim/* "$HOME/.config/nvim"
+    rm -rf kickstart.nvim
+    echo "Successfully installed kickstart.nvim to '$HOME/.config/nvim'"
 fi
+
+# install hypr configs
+
+# install quickshell configs
