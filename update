@@ -1,9 +1,6 @@
 #!/bin/bash
 cp -r ~/.config/hypr ~/.alice/config/
 
-cp -r ~/.config/quickshell/ ~/.alice/config/
-rm -rf ~/.alice/config/quickshell/.git
-
 cp -r ~/.config/bash ~/.alice/config/
 cp ~/.bashrc ~/.alice/config/bash/bashrc
 
