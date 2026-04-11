@@ -15,10 +15,9 @@ alias gemma4='ollama run gemma4:latest'
 alias fooocus_anime='~/Repos/Fooocus/start_anime.sh'
 alias ddrive='~/Documents/projects/kao_download/myenv/bin/python3 ~/Documents/projects/kao_download/main.py'
 alias git-commit='~/Documents/projects/git-commit/.venv/bin/python3 ~/Documents/projects/git-commit/git-commit-llm'
-alias music="/home/neros/.alice/bin/music.sh"
 alias rsiwd="systemctl restart iwd.service"
 alias vim="nvim"
-# alias clear="\033[2J\033[H\033[3J"
+alias clear-scroll="\033[2J\033[H\033[3J"
 
 export MAKEFLAGS="-j$(nproc)"
 
