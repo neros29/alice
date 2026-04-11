@@ -1,4 +1,4 @@
 #!/usr/bin/bash
 cp -r ~/.alice/config/* ~/.config/
-mv ~/.config/bashrc ~/.bashrc
+cp ~/.alice/config/bash/bashrc ~/.bashrc
 source ~/.bashrc
