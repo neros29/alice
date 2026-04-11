@@ -14,7 +14,7 @@ def start_process(command):
         close_fds=True
     )
 
-raw = subprocess.getoutput(["hyprctl", "-j", "activeworkspace"])
+raw = subprocess.check_output(["hyprctl", "-j", "activeworkspace"], text=True)
 workspace_id = str(json.loads(raw)["id"]) 
 
 map_path = "/home/neros/.alice/data/map.json"
