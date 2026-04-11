@@ -6,6 +6,6 @@
         "8": "mpv --shuffle \"$(cat ~/.alice/data/music | walker --dmenu -p 'Music' --width 800 --height 800)\"",
         "9": "google-chrome-stable --app=https://chatgpt.com",
         "10": "/home/neros/.alice/bin/bg-next",
-        "defualt": "walker"
+        "default": "walker"
     }
 }
