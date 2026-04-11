@@ -1,0 +1,18 @@
+#!/usr/bin/bash
+
+# Define paths
+TEMP_DIR="kickstart.nvim"
+TARGET_DIR="$HOME/.config/nvim"
+
+echo "Cloning kickstart.nvim..."
+git clone "https://github.com/neros29/kickstart.nvim.git"
+
+if [ -d "$TARGET_DIR" ] && [ "$(ls -A "$TARGET_DIR")" ]; then
+    echo "Error: '$TARGET_DIR' is not empty. Move aborted to prevent overwriting files."
+else
+    echo "Target '$TARGET_DIR' is empty or doesn't exist. Moving files..."
+    mkdir -p "$TARGET_DIR"
+    cp -r "$TEMP_DIR"/* "$TARGET_DIR/"
+    rm -rf "$TEMP_DIR"
+    echo "Successfully installed kickstart.nvim to $TARGET_DIR"
+fi

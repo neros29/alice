@@ -10,7 +10,8 @@ source ~/.config/bash/rc
 # alias p='python'
 source ~/.config/bash/fzf.sh
 
-alias gemma='ollama run gemma3:12b-it-q4_K_M'
+alias gemma3='ollama run gemma3:12b-it-q4_K_M'
+alias gemma4='ollama run gemma4:latest'
 alias fooocus_anime='~/Repos/Fooocus/start_anime.sh'
 alias ddrive='~/Documents/projects/kao_download/myenv/bin/python3 ~/Documents/projects/kao_download/main.py'
 alias git-commit='~/Documents/projects/git-commit/.venv/bin/python3 ~/Documents/projects/git-commit/git-commit-llm'
