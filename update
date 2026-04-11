@@ -21,4 +21,9 @@ cp -r ~/.config/uwsm ~/.alice/config/
 cp -r ~/.config/walker ~/.alice/config/
 cp -r ~/.config/brave-flags.conf ~/.alice/config/
 cp -r ~/.config/chromium-flags.conf ~/.alice/config/
+
+mkdir -r ~/.alice/config/chromium/Default/Preferences
+cp -r ~/.config/chromium/Default/Preferences ~/.alice/config/chromium/Default/Preferences
+
 cp -r ~/.config/starship.toml ~/.alice/config/
+cp -r ~/.config/mako/ ~/.alice/config/

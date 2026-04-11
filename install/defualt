@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# install keyd configs
+sudo cp ~/.alice/default/keyd/default.conf /etc/keyd/default.conf
+
+# install pacman
+sudo cp ~/.alice/default/pacman/pacman.conf /etc/
+sudo mkdir /etc/pacman.d/
+sudo cp ~/.alice/default/pacman/mirrorlist /etc/pacman.d/
