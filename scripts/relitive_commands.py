@@ -1,5 +1,6 @@
 import subprocess
 import json
+import os
 
 
 def start_process(command):
@@ -17,7 +18,7 @@ def start_process(command):
 raw = subprocess.check_output(["hyprctl", "-j", "activeworkspace"], text=True)
 workspace_id = str(json.loads(raw)["id"]) 
 
-map_path = "/home/neros/.alice/data/map.json"
+map_path = os.path.expanduser("~/.alice/data/map.json")
 
 with open(map_path, "r") as f:
    map_commands = json.load(f)["map"]

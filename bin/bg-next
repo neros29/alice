@@ -3,7 +3,7 @@
 BACKGROUNDS_DIR="$HOME/Wallpapers/"
 CURRENT_BACKGROUND_LINK="$HOME/.config/omarchy/current/background"
 # Hardcoded path for the command to ensure no typos
-TARGET_LINK="/home/neros/.config/omarchy/current/background"
+TARGET_LINK="$HOME/.config/omarchy/current/background"
 
 if [[ -f "$1" ]]; then
     # If an argument is provided, use it

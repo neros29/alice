@@ -1,6 +1,6 @@
 #!/bin/bash
 
-data_path="/home/neros/.alice/data/music"
+data_path="$HOME/.alice/data/music"
 
 # Check if an argument is provided.
 if [ -z "$1" ]; then
