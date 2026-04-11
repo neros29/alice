@@ -7,3 +7,9 @@ sudo cp ~/.alice/default/keyd/default.conf /etc/keyd/default.conf
 sudo cp ~/.alice/default/pacman/pacman.conf /etc/
 sudo mkdir /etc/pacman.d/
 sudo cp ~/.alice/default/pacman/mirrorlist /etc/pacman.d/
+
+# install plymouth
+# sudo mkdir /usr/share/plymouth/
+# sudo cp ~/.alice/default/omarchy /usr/share/plymouth/themes/
+# sudo mkdir /etc/plymouth/
+# sudo cp ~/.alice/default/plymouthd.conf /etc/plymouth/
