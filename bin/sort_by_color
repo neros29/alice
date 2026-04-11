@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Set search path (defaults to current directory)
+SEARCH_PATH="${1:-.}"
+
+# 1. fd -0: outputs files separated by a null character (safest for filenames)
+# 2. xargs -0: reads those null-separated files
+# 3. -P $(nproc): runs as many processes as you have CPU cores
+# 4. -I {}: replaces {} with the filename
+fd -e jpg -e png -e webp -e jpeg -0 . "$SEARCH_PATH" |
+    xargs -0 -P "$(nproc)" -I {} bash -c '
+    stats=$(magick "{}" -colorspace HSL -format "%[fx:u.h] %[fx:u.s] %[fx:u.l]" info: 2>/dev/null)
+    if [ -n "$stats" ]; then
+        echo "$stats|{}"
+    fi
+' | sort -t'|' -k1,1n -k3,3n | cut -d'|' -f2-
