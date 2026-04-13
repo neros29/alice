@@ -1,20 +1,51 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
-# install nvim
+# Exit on error, undefined variable, or pipe failure
+set -euo pipefail
 
-echo "Cloning kickstart.nvim..."
-git clone "https://github.com/neros29/kickstart.nvim.git"
+# Function to install configs from a git repo into a target directory
+install_config() {
+    local repo_url="$1"
+    local target_dir="$2"
+    local repo_name
 
-if [ -d "$HOME/.config/nvim" ] && [ "$(ls -A "$HOME/.config/nvim")" ]; then
-    echo "Error: '$HOME/.config/nvim' is not empty. Move aborted to prevent overwriting files."
-else
-    echo "Target '$HOME/.config/nvim' is empty or doesn't exist. Moving files..."
-    mkdir -p "$HOME/.config/nvim"
-    cp -r kickstart.nvim/* "$HOME/.config/nvim"
-    rm -rf kickstart.nvim
-    echo "Successfully installed kickstart.nvim to '$HOME/.config/nvim'"
+    # Extract repo name from URL (e.g., "kickstart.nvim" from ".../kickstart.nvim.git")
+    repo_name=$(basename "$repo_url" .git)
+
+    echo "→ Cloning $repo_url ..."
+    git clone "$repo_url"
+
+    # Check if target directory exists and is non-empty
+    if [ -d "$target_dir" ] && [ -n "$(ls -A "$target_dir")" ]; then
+        echo "⚠️  Error: $target_dir is not empty. Skipping to avoid overwriting."
+        rm -rf "$repo_name"
+        return 1
+    fi
+
+    # Install: create parent, copy all files (including hidden ones), then clean up
+    echo "→ Installing to $target_dir ..."
+    mkdir -p "$target_dir"
+    cp -r "$repo_name/." "$target_dir"
+    rm -rf "$repo_name"
+
+    echo "✅ Successfully installed to $target_dir"
+    echo
+}
+
+# Check if git is available
+if ! command -v git &>/dev/null; then
+    echo "❌ Error: 'git' is not installed. Please install git first."
+    exit 1
 fi
 
-# install hypr configs
+# 1. Install Neovim config (kickstart.nvim)
+install_config "https://github.com/neros29/kickstart.nvim.git" "$HOME/.config/nvim"
 
-# install quickshell configs
+# 2. Install Hypr configs
+install_config "https://github.com/neros29/hypr.git" "$HOME/.config/hypr"
+
+# 3. Install Quickshell configs
+#    !!! CHANGE THIS URL to your actual quickshell config repo !!!
+install_config "https://github.com/neros29/quickshell-config.git" "$HOME/.config/quickshell"
+
+echo "🎉 All installations attempted. Check any error messages above."
