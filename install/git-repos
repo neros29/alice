@@ -19,7 +19,6 @@ install_config() {
     if [ -d "$target_dir" ] && [ -n "$(ls -A "$target_dir")" ]; then
         echo "⚠️  Error: $target_dir is not empty. Skipping to avoid overwriting."
         rm -rf "$repo_name"
-        return 1
     fi
 
     # Install: create parent, copy all files (including hidden ones), then clean up
@@ -46,6 +45,6 @@ install_config "https://github.com/neros29/hypr.git" "$HOME/.config/hypr"
 
 # 3. Install Quickshell configs
 #    !!! CHANGE THIS URL to your actual quickshell config repo !!!
-install_config "https://github.com/neros29/quickshell-config.git" "$HOME/.config/quickshell"
+install_config "https://github.com/neros29/quickshell.git" "$HOME/.config/quickshell"
 
 echo "🎉 All installations attempted. Check any error messages above."
