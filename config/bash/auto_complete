@@ -1,0 +1,24 @@
+_ollama_completions() {
+    local cur prev
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+    # 1. Main subcommands
+    local commands="serve create show run pull push list cp rm help"
+
+    case "$prev" in
+        "run"|"show"|"push"|"rm"|"cp")
+            # 2. Dynamically get list of installed models for these commands
+            local models=$(ollama list | awk 'NR>1 {print $1}')
+            COMPREPLY=( $(compgen -W "$models" -- "$cur") )
+            return 0
+            ;;
+        *)
+            ;;
+    esac
+
+    # 3. Default to suggesting subcommands
+    COMPREPLY=( $(compgen -W "$commands" -- "$cur") )
+}
+
+complete -F _ollama_completions ollama

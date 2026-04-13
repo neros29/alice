@@ -5,4 +5,5 @@ source ~/.config/bash/prompt
 source ~/.config/bash/init
 source ~/.config/bash/envs
 source ~/.config/bash/fzf
+source ~/.config/bash/auto_complete
 [[ $- == *i* ]] && bind -f ~/.config/bash/inputrc
