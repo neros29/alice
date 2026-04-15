@@ -48,4 +48,4 @@ fi
 
 # This command runs whether an arg was passed OR we cycled through
 # We use the variable TARGET_LINK to ensure it's always pointing to the same place
-awww img "$TARGET_LINK" --transition-type wipe --transition-duration 2 --transition-fps 144
+awww img "$TARGET_LINK" --transition-type wipe --transition-duration 2 --transition-fps 144 --resize crop
