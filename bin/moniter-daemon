@@ -17,7 +17,7 @@ handle_monitor_change() {
     # Example: awww wallpaper path/to/wallpaper.jpg
     # Or trigger a script that maps specific wallpapers to specific monitors
     #
-    awww img "$TARGET_LINK" --transition-type wipe --transition-duration 2 --transition-fps 144
+    awww img "$TARGET_LINK" --transition-type wipe --transition-duration 2 --transition-fps 144 --resize crop
 }
 
 # The magic part: Listen to the Hyprland socket
