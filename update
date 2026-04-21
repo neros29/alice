@@ -1,6 +1,7 @@
 #!/bin/bash
 cp -r ~/.config/bash ~/.alice/config/
 cp ~/.bashrc ~/.alice/config/bash/bashrc
+cp ~/.tmux.conf ~/.alice/config/tmux.conf
 
 cp -r ~/.config/uwsm/ ~/.alice/config/
 cp -r ~/.config/kitty ~/.alice/config/

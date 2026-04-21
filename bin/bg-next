@@ -50,5 +50,5 @@ fi
 # This command runs whether an arg was passed OR we cycled through
 # We use the variable TARGET_LINK to ensure it's always pointing to the same place
 matugen image -m "$MODE" "$TARGET_LINK" --json hex --source-color-index 0 >"$HOME/.alice/theme/current/theme.json"
-
+python3 "$HOME/.alice/scripts/set-theme.py"
 awww img "$TARGET_LINK" --transition-type wipe --transition-duration 2 --transition-fps 144 --resize crop

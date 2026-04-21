@@ -1,4 +1,5 @@
 #!/usr/bin/bash
 cp -r ~/.alice/config/* ~/.config/
 cp ~/.alice/config/bash/bashrc ~/.bashrc
+cp ~/.alice/config/tmux.conf ~/.tmux.conf
 source ~/.bashrc

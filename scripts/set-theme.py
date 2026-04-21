@@ -22,12 +22,6 @@ class Main:
     def kitty_theme(self):
         conf = f"""
 background               {self.theme["colors"]["background"][self.theme_mode]["color"]}
-foreground               {self.theme["colors"]["primary"][self.theme_mode]["color"]}
-cursor                   {self.theme["colors"]["secondary"][self.theme_mode]["color"]}
-cursor_text_color        {self.theme["colors"]["secondary"][self.theme_mode]["color"]}
-selection_background     {self.theme["colors"]["inverse_surface"][self.theme_mode]["color"]}
-selection_foreground     {self.theme["colors"]["inverse_primary"][self.theme_mode]["color"]}
-
         """              
         conf_path = os.path.join(self.root_dir, "theme/current/kitty.conf")
         with open(conf_path, "w") as f:
