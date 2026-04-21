@@ -1,9 +1,10 @@
 #!/bin/bash
 
 BACKGROUNDS_DIR="$HOME/Wallpapers/"
-CURRENT_BACKGROUND_LINK="$HOME/.config/omarchy/current/background"
+CURRENT_BACKGROUND_LINK="$HOME/.alice/theme/current/background"
 # Hardcoded path for the command to ensure no typos
-TARGET_LINK="$HOME/.config/omarchy/current/background"
+TARGET_LINK="$HOME/.alice/theme/current/background"
+MODE="dark"
 
 if [[ -f "$1" ]]; then
     # If an argument is provided, use it
@@ -48,4 +49,6 @@ fi
 
 # This command runs whether an arg was passed OR we cycled through
 # We use the variable TARGET_LINK to ensure it's always pointing to the same place
+matugen image -m "$MODE" "$TARGET_LINK" --json hex --source-color-index 0 >"$HOME/.alice/theme/current/theme.json"
+
 awww img "$TARGET_LINK" --transition-type wipe --transition-duration 2 --transition-fps 144 --resize crop
