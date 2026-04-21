@@ -4,25 +4,15 @@ cp ~/.bashrc ~/.alice/config/bash/bashrc
 
 cp -r ~/.config/uwsm/ ~/.alice/config/
 cp -r ~/.config/kitty ~/.alice/config/
-cp -r ~/.config/kitty ~/.alice/config/
 cp -r ~/.config/fastfetch/ ~/.alice/config/
 cp -r ~/.config/btop ~/.alice/config/
 cp -r ~/.config/environment.d ~/.alice/config/
-cp -r ~/.config/fastfetch ~/.alice/config/
 cp -r ~/.config/fcitx5 ~/.alice/config/
 cp -r ~/.config/fontconfig ~/.alice/config/
-cp -r ~/.config/git ~/.alice/config/
 cp -r ~/.config/imv ~/.alice/config/
-cp -r ~/.config/kitty ~/.alice/config/
-cp -r ~/.config/lazygit ~/.alice/config/
 cp -r ~/.config/swayosd ~/.alice/config/
 cp -r ~/.config/systemd ~/.alice/config/
 cp -r ~/.config/uwsm ~/.alice/config/
 cp -r ~/.config/walker ~/.alice/config/
-cp -r ~/.config/brave-flags.conf ~/.alice/config/
-cp -r ~/.config/chromium-flags.conf ~/.alice/config/
-
-cp -r ~/.config/chromium/Default/Preferences ~/.alice/config/chromium/Default/Preferences
 
 cp -r ~/.config/starship.toml ~/.alice/config/
-cp -r ~/.config/mako/ ~/.alice/config/
