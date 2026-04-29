@@ -4,7 +4,11 @@ BACKGROUNDS_DIR="$HOME/Wallpapers/"
 CURRENT_BACKGROUND_LINK="$HOME/.alice/theme/current/background"
 # Hardcoded path for the command to ensure no typos
 TARGET_LINK="$HOME/.alice/theme/current/background"
-MODE="dark"
+if [[ -f "$HOME/.alice/theme/current/dark" ]]; then
+    MODE="dark"
+else
+    MODE="light"
+fi
 
 if [[ -f "$1" ]]; then
     # If an argument is provided, use it

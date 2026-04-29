@@ -1,0 +1,14 @@
+#!/bin/bash
+BASE="$HOME/.alice/theme/current/"
+if [[ -f "${BASE}light" ]]; then
+    rm "${BASE}light"
+    touch "${BASE}dark"
+    echo "Theme changed to dark"
+elif [ -f "${BASE}dark" ]; then
+    rm "${BASE}dark"
+    touch "${BASE}light"
+    echo "Theme changed to light"
+else
+    touch "${BASE}dark"
+    echo "No theme found defualting to dark"
+fi
