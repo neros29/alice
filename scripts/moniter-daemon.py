@@ -8,7 +8,7 @@ from pathlib import Path
 
 # --- CONFIGURATION ---
 # Update these paths as needed
-TARGET_LINK = Path.home() / ".config/omarchy/current/background"
+TARGET_LINK = Path.home() / ".alice/theme/current/background"
 # The command to run when a monitor is added
 AWWW_COMMAND = [
     "awww", "img", str(TARGET_LINK),
