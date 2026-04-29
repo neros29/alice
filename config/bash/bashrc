@@ -6,6 +6,8 @@
 source ~/.config/bash/rc
 # Add your own exports, aliases, and functions here.
 #
+#
+bind '"\ec": "~/.config/bash/copy\n"'
 # Make an alias for invoking commands you use constantly
 # alias p='python'
 source ~/.config/bash/fzf.sh

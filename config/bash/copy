@@ -1,0 +1,10 @@
+#!/bin/bash
+TEMP_FILE="/tmp/kitty-copy-buffer"
+touch $TEMP_FILE
+kitty @ get-text --ansi >"$TEMP_FILE"
+nvim -c "term cat ${TEMP_FILE}" \
+    -c 'set relativenumber number' \
+    -c 'set laststatus=0' \
+    -c 'normal gg' \
+    -c 'autocmd TextYankPost * if v:event.operator ==# "y" | call timer_start(0, {-> execute("q!")}) | endif' \
+    -c 'nnoremap q :q!<CR>'
