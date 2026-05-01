@@ -12,3 +12,5 @@ else
     touch "${BASE}dark"
     echo "No theme found defualting to dark"
 fi
+python3 $ALICE_PATH/scripts/set-theme.py
+echo "theme set"
