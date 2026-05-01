@@ -8,11 +8,9 @@ if [[ -f "$FILE_PATH" ]]; then
     # Condition is TRUE (File exists AND mode is dark)
     gsettings set org.gnome.desktop.interface color-scheme "prefer-light"
     gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
-    echo "light"
 else
     gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
     gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
-    echo "dark"
 fi
 
 # Change gnome icon theme color

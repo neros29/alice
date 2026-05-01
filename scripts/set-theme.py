@@ -1,4 +1,5 @@
-from subprocess import run
+from subprocess import SubprocessError, run
+from pathlib import Path
 import os
 import json
 
@@ -6,30 +7,28 @@ import json
 
 class Main: 
     def __init__(self, root_dir) -> None:
-        self.root_dir = os.path.expanduser(root_dir)
-        self.dark = os.path.isfile(os.path.join(self.root_dir, "theme/current/dark"))
-        self.theme_path = os.path.join(self.root_dir, "theme/current/theme.json")
-        self._genrate_theme()
-        self.theme = self._get_theme()
-        self.theme_mode = self.theme["mode"]
+        self.root_dir = Path(root_dir)
+        self.theme_dir = self.root_dir / "theme" / "current"
+        self.mode = "light" if (self.theme_dir / "light").exists() else "dark"
+        self.theme = self._genrate_theme()
     
-    def _get_theme(self):
-        with open(self.theme_path, "r") as f:
-            return json.load(f)
 
     def _genrate_theme(self):
-        background = os.path.join(self.root_dir, "theme/current/background")
-        mode = "dark" if self.dark else "light"
-        cmd = ["matugen", "image", "-m", mode, background, "--json", "hex", "--source-color-index", "0"]
-        with open(self.theme_path, "w") as f:
-            run(cmd, stdout=f)
+        background = self.theme_dir / "background"
+        cmd = ["matugen", "image", "-m", self.mode, background, "--json", "hex", "--source-color-index", "0"]
+        try:
+            result = run(cmd, capture_output=True, text=True, check=True)
+            (self.theme_dir / "theme.json").write_text(result.stdout)
+            return json.loads(result.stdout)
+        except Exception as e:
+            print(f"Error {e} Exiting program")
+            exit(1)
 
     def _get_color(self, color: str):
-        return self.theme["colors"][color][self.theme_mode]["color"]
+        return self.theme["colors"][color][self.mode]["color"]
 
     def gnome_theme(self):
-        cmd = ["bash", os.path.join(self.root_dir, "scripts/set-gnome-theme.sh")]
-        run(cmd)    
+        cmd = ["bash", self.root_dir / "scripts" / "set-gnome-theme.sh"]
 
     def walker_theme(self):
         conf = f"""
@@ -40,18 +39,31 @@ class Main:
 @define-color foreground {self._get_color("background")};
 @define-color background {self._get_color("on_background")};
         """
-        conf_path = os.path.join(self.root_dir, "theme/current/walker.css")
-        with open(conf_path, "w") as f:
-            f.write(conf)
+        conf_path = self.theme_dir / "walker.css"
+        conf_path.write_text(conf)
 
 
     def kitty_theme(self):
         conf = f"""
-background               {self._get_color("background")}
+background {self._get_color("background")}
+foreground {self._get_color("on_background")}
+
+selection_background {self._get_color("primary")}
+selection_foreground {self._get_color("background")}
+
+cursor {self._get_color("secondary")}
+cursor_text_color {self._get_color("background")}
+
+active_tab_foreground    {self._get_color("secondary_container")}
+active_tab_background   {self._get_color("primary")} 
+
+inactive_tab_foreground  {self._get_color("primary")}
+inactive_tab_background {self._get_color("secondary_container")} 
+
+tab_bar_margin_color {self._get_color("secondary_container")}
         """              
-        conf_path = os.path.join(self.root_dir, "theme/current/kitty.conf")
-        with open(conf_path, "w") as f:
-            f.write(conf)
+        conf_path = self.theme_dir / "kitty.conf"
+        conf_path.write_text(conf)
         run(["killall", "-SIGUSR1", "kitty"])
 
     
@@ -63,6 +75,7 @@ background               {self._get_color("background")}
     
 
 if __name__ == "__main__":
-    main = Main("~/.alice/")
+    path = Path("~/.alice/").expanduser()
+    main = Main(path)
     main.main()
 
