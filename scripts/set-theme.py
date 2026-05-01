@@ -59,8 +59,6 @@ active_tab_background   {self._get_color("primary")}
 
 inactive_tab_foreground  {self._get_color("primary")}
 inactive_tab_background {self._get_color("secondary_container")} 
-
-tab_bar_margin_color {self._get_color("secondary_container")}
         """              
         conf_path = self.theme_dir / "kitty.conf"
         conf_path.write_text(conf)
