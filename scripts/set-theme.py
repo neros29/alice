@@ -4,7 +4,6 @@ import os
 import json
 
 
-
 class Main: 
     def __init__(self, root_dir) -> None:
         self.root_dir = Path(root_dir)
@@ -29,6 +28,15 @@ class Main:
 
     def gnome_theme(self):
         cmd = ["bash", self.root_dir / "scripts" / "set-gnome-theme.sh"]
+
+    def hyprland_theme(self):
+        active_border = self._get_color("primary")
+        inactive_border = self._get_color("secondary_container")
+        conf = f"""
+hl.config({{ general = {{ col = {{ active_border = "{active_border}", inactive_border = "{inactive_border}" }} }} }})
+        """              
+        conf_path = self.theme_dir / "hyprland.lua"
+        conf_path.write_text(conf)
 
     def walker_theme(self):
         conf = f"""
@@ -66,6 +74,7 @@ inactive_tab_background {self._get_color("secondary_container")}
 
     
     def main(self):
+        self.hyprland_theme()
         self.gnome_theme()
         self.walker_theme()
         self.kitty_theme()
