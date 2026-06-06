@@ -1,0 +1,21 @@
+#! python3
+import os
+import re
+
+cwd = os.getcwd()
+match = re.match(r"Album -\s*(.*)", cwd.split("/")[-1])
+if match:
+    name = match.group(1).strip()
+else:
+    name = cwd.split("/")[-1].strip()
+data = []
+for path in os.listdir():
+    if path.endswith((".mp3")):
+        data.append(path)
+print(os.path.join(cwd, f"{name}.m3u"))
+if len(data) > 0:
+    with open(f"{name}.m3u", "w") as f:
+        f.write(f"# NAME: {name}\n")
+        f.write("\n".join(data))
+else:
+    print("No music files found")
