@@ -50,6 +50,18 @@ hl.config({{ general = {{ col = {{ active_border = "{active_border}", inactive_b
         conf_path = self.theme_dir / "walker.css"
         conf_path.write_text(conf)
 
+    def music_launcher_theme(self):
+        conf = f"""
+{{
+    "background": "{self._get_color("background")}",
+    "foreground": "{self._get_color("on_background")}",
+    "surface_bg": "{self._get_color("secondary_container")}"
+}}
+        """              
+        conf_path = self.theme_dir / "music-launcher.json"
+        conf_path.write_text(conf)
+        run(["killall", "-SIGUSR1", "kitty"])
+
 
     def kitty_theme(self):
         conf = f"""
@@ -78,8 +90,7 @@ inactive_tab_background {self._get_color("secondary_container")}
         self.gnome_theme()
         self.walker_theme()
         self.kitty_theme()
-
-    
+        self.music_launcher_theme()
 
 if __name__ == "__main__":
     path = Path("~/.alice/").expanduser()
