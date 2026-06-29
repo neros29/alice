@@ -29,7 +29,7 @@ def reload_music():
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--gen")
+parser.add_argument("--gen", action="store_true")
 args = parser.parse_args()
 
 if args.gen:
